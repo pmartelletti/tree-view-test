@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
       <tree-view :items="departments">
           <template slot="children" scope="props">
               <tree-view :items="sectionsFor(props.id)">
@@ -26,18 +27,18 @@ export default {
   data () {
     return {
       departments: [
-          { name: 'department 1', id: 1},
-          { name: 'department 2', id: 2},
-          { name: 'department 3', id: 3},
-          { name: 'department 4', id: 4}
+          { name: 'department 1', id: 1, showChildren: false },
+          { name: 'department 2', id: 2, showChildren: false  },
+          { name: 'department 3', id: 3, showChildren: false },
+        { name: 'department 4', id: 4, showChildren: false }
       ],
       sections: [
-          { name: 'section 1', id: 1, department: 1},
-          { name: 'section 2', id: 2, department: 1},
-          { name: 'section 3', id: 3, department: 2},
-          { name: 'section 4', id: 4, department: 3},
-          { name: 'section 5', id: 5, department: 3},
-          { name: 'section 6', id: 6, department: 4}
+          { name: 'section 1', id: 1, department: 1, showChildren: false },
+          { name: 'section 2', id: 2, department: 1, showChildren: false },
+          { name: 'section 3', id: 3, department: 2, showChildren: false },
+          { name: 'section 4', id: 4, department: 3, showChildren: false },
+          { name: 'section 5', id: 5, department: 3, showChildren: false },
+          { name: 'section 6', id: 6, department: 4, showChildren: false }
       ],
         subsections: [
             { name: 'sub section 1', id: 1, section: 1 },

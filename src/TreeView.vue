@@ -1,26 +1,27 @@
 <template>
-    <div>
-        <ul>
-            <li v-for="item in items" :key="item.id">
-                {{ item.name }}
-                <slot name="children" :id="item.id" :display="" ></slot>
-            </li>
-        </ul>
-    </div>
-
+    <ul>
+      <li v-for="item in items">
+        <a href="#" @click="toggleDisplay(item)">{{ item.name }}</a>
+        {{ item }}
+        <slot name="children" :id="item.id" v-if="item.showChildren">
+          default value
+        </slot>
+      </li>
+    </ul>
 </template>
 
 <script>
     export default {
-        props: ['items', 'display'],
-        data () {
-            return {
-                display: false
-            }
-        },
+        props: ['items'],
         methods: {
-            toggleDisplay() {
-                this.display = !this.display
+            toggleDisplay (item) {
+                if (item.showChildren) item.showChildren = false
+                else {
+                  item.showChildren = true
+                  _.chain(this.items).reject(_item => _item == item)
+                    .each(_item => _item.showChildren = !item.showChildren)
+                }
+
             }
         }
     }
